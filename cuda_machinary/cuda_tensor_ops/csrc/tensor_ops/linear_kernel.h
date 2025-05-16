@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <cstddef>
 
-
+// TODO: turn into enum later
 enum class DataType {
     FP32 = 0,
     FP16 = 1,
@@ -35,7 +35,7 @@ void linear_forward(
     const float bias,
     const int batch_size,
     const int seq_length,
-    const DataType data_type,  // 0: fp32, 1: fp16, 2: bf16
+    const int data_type,  // 0: fp32, 1: fp16, 2: bf16
     cudaStream_t stream
 );
 

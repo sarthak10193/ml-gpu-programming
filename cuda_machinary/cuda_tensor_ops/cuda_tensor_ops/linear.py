@@ -30,9 +30,6 @@ class Linear(nn.Module):
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return LinearOp.apply(x, self.scale, self.bias)
-    
-    def extra_repr(self) -> str:
-        return f'scale={self.scale}, bias={self.bias}'
 
 
 def linear_op(input: torch.Tensor, scale: float = 1.0, bias: float = 0.0) -> torch.Tensor:

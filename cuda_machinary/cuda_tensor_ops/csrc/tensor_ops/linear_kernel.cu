@@ -5,6 +5,7 @@
 
 namespace cuda_tensor_ops {
 
+// ****************** 1. Kernel Header File ****************** //
 // CUDA kernel that performs a fused linear transformation (ax + b)
 template <typename T>
 __global__ void linear_kernel(
@@ -25,6 +26,7 @@ __global__ void linear_kernel(
     }
 }
 
+// ****************** 2. Kernel Launch ****************** //
 // Kernel launcher with template specialization
 // This pattern is common for different data types and block sizes
 template <typename T, int BLOCK_SIZE>
@@ -47,6 +49,7 @@ void launch_linear_kernel(
     );
 }
 
+// ****************** 3. Explicit Template Instantiation ************** // 
 // Explicit template instantiations for different types and block sizes
 // This generates optimized code at compile time
 #define INSTANTIATE_LAUNCH_KERNEL(T, BLOCK_SIZE) \
@@ -72,6 +75,7 @@ INSTANTIATE_LAUNCH_KERNEL(__half, 256)
 INSTANTIATE_LAUNCH_KERNEL(__nv_bfloat16, 128)
 INSTANTIATE_LAUNCH_KERNEL(__nv_bfloat16, 256)
 
+// ****************** 4. C++ Interface for Kernel Launching ************** //
 // C++ interface that dispatches to the appropriate templated implementation
 void linear_forward(
     void* output,
